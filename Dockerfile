@@ -32,14 +32,6 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 COPY start.sh /start.sh
 CMD ["./start.sh"]
 
-#COPY webroot/diff.min.js /var/www/html
-#COPY webroot/idindex.json /var/www/html
-#COPY webroot/index.php /var/www/html
-#COPY webroot/pageindex.json /var/www/html
-#COPY webroot/ParsedownExtra.php /var/www/html
-#COPY webroot/Parsedown.php /var/www/html
-#COPY webroot/peppermint.json /var/www/html
-#COPY webroot/recent-changes.json /var/www/html
 COPY webroot/* /var/www/html/
 
 EXPOSE 80
