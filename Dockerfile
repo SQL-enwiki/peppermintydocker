@@ -1,11 +1,11 @@
-#Download base image ubuntu 16.04
+#Download base image debian stretch
 FROM debian:stretch
  
 # Update Software repository
 RUN apt-get update
  
 # Install nginx, php-fpm, and other prerequisites from ubuntu repository
-RUN apt-get install -y nginx php7.0-fpm php-mbstring php-imagick php-fileinfo php-zip php-intl supervisor && \
+RUN apt-get install -y nginx php7.0-fpm php-mbstring php-imagick php-fileinfo php-zip php-intl supervisor ca-certificates && \
    rm -rf /var/lib/apt/lists/*  && \
    rm -rf /var/www/html/*
 
@@ -32,6 +32,14 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 COPY start.sh /start.sh
 CMD ["./start.sh"]
 
+#COPY webroot/diff.min.js /var/www/html
+#COPY webroot/idindex.json /var/www/html
+#COPY webroot/index.php /var/www/html
+#COPY webroot/pageindex.json /var/www/html
+#COPY webroot/ParsedownExtra.php /var/www/html
+#COPY webroot/Parsedown.php /var/www/html
+#COPY webroot/peppermint.json /var/www/html
+#COPY webroot/recent-changes.json /var/www/html
 COPY webroot/* /var/www/html/
 
 EXPOSE 80
